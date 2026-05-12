@@ -1,0 +1,445 @@
+/* ORYX Deck — design tokens & base styles */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --void: #070707;
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --elevated: #161616;
+  --line: #232323;
+  --line-2: #2d2d2d;
+  --muted: #6a6a6a;
+  --dim: #9a9a9a;
+  --text: #e8e8e8;
+  --white: #ffffff;
+  --red: #ef2b2b;
+  --red-deep: #c71414;
+  --amber: #ff8a1f;
+  --green: #2bd48e;
+  --blue: #3a8dff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #000;
+  color: var(--text);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-feature-settings: 'ss01', 'ss02';
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+deck-stage section {
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+  position: relative;
+}
+
+.mono { font-family: 'JetBrains Mono', monospace; letter-spacing: -0.01em; }
+
+/* ===== Reusable slide chrome ===== */
+.slide {
+  width: 100%;
+  height: 100%;
+  padding: 80px 100px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.slide-frame {
+  position: absolute;
+  inset: 40px 40px;
+  border: 1px solid var(--line);
+  pointer-events: none;
+}
+
+.slide-frame::before,
+.slide-frame::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--red);
+}
+.slide-frame::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.slide-frame::after { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+.slide-meta {
+  position: absolute;
+  top: 56px;
+  left: 100px;
+  right: 100px;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  text-transform: uppercase;
+  z-index: 2;
+}
+.slide-meta .id { color: var(--red); }
+.slide-meta .sep { color: var(--line-2); }
+
+/* ===== Typography ===== */
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  letter-spacing: 0.28em;
+  color: var(--red);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.eyebrow-dim {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  letter-spacing: 0.28em;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.h-display {
+  font-size: 132px;
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  color: var(--white);
+}
+.h-title {
+  font-size: 84px;
+  font-weight: 700;
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+  color: var(--white);
+}
+.h-section {
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--white);
+}
+.h-sub {
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.body-lg { font-size: 34px; line-height: 1.35; font-weight: 400; color: var(--dim); letter-spacing: -0.005em; }
+.body    { font-size: 28px; line-height: 1.4;  font-weight: 400; color: var(--dim); }
+.small   { font-size: 24px; line-height: 1.4;  font-weight: 400; color: var(--muted); }
+
+.red { color: var(--red); }
+.amber { color: var(--amber); }
+.white { color: var(--white); }
+
+/* ===== Common elements ===== */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  border: 1px solid var(--red);
+  color: var(--red);
+  background: rgba(239, 43, 43, 0.06);
+}
+.tag .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 12px var(--red);
+}
+
+/* Pulse animation for cover tags */
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 8px var(--green); transform: scale(1); }
+  50% { box-shadow: 0 0 20px var(--green), 0 0 36px rgba(43,212,142,0.4); transform: scale(1.35); }
+}
+@keyframes pulse-amber {
+  0%, 100% { box-shadow: 0 0 8px var(--amber); transform: scale(1); }
+  50% { box-shadow: 0 0 20px var(--amber), 0 0 36px rgba(255,138,31,0.4); transform: scale(1.35); }
+}
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 8px var(--red); transform: scale(1); }
+  50% { box-shadow: 0 0 20px var(--red), 0 0 36px rgba(239,43,43,0.4); transform: scale(1.35); }
+}
+.tag.plug   { border-color: var(--green); color: var(--green); background: rgba(43,212,142,0.07); }
+.tag.plug   .dot { background: var(--green); animation: pulse-green 1.6s ease-in-out infinite; }
+.tag.engage { border-color: var(--amber); color: var(--amber); background: rgba(255,138,31,0.07); }
+.tag.engage .dot { background: var(--amber); animation: pulse-amber 1.6s ease-in-out infinite 0.3s; }
+.tag.dominate { border-color: var(--red); color: var(--red); background: rgba(239,43,43,0.07); }
+.tag.dominate .dot { background: var(--red); animation: pulse-red 1.6s ease-in-out infinite 0.6s; }
+.tag.amber { border-color: var(--amber); color: var(--amber); background: rgba(255,138,31,0.06); }
+.tag.amber .dot { background: var(--amber); box-shadow: 0 0 12px var(--amber); }
+.tag.white { border-color: var(--line-2); color: var(--text); background: transparent; }
+.tag.white .dot { background: var(--text); box-shadow: none; }
+
+.divider {
+  height: 1px;
+  background: var(--line);
+  width: 100%;
+}
+
+.kbd {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  color: var(--red);
+  letter-spacing: 0.08em;
+}
+
+/* ===== Utility ===== */
+.grid { display: grid; gap: 24px; }
+.row  { display: flex; gap: 24px; }
+.col  { display: flex; flex-direction: column; gap: 24px; }
+.grow { flex: 1; }
+.center { display: flex; align-items: center; justify-content: center; }
+
+/* Scan line accent */
+.scan {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 3px,
+    rgba(255,255,255,0.012) 3px,
+    rgba(255,255,255,0.012) 4px
+  );
+  pointer-events: none;
+}
+
+/* Oryx logo white filter */
+.logo-white { filter: invert(1) brightness(2); }
+
+/* ===== Specific components ===== */
+
+/* Stat block */
+.stat {
+  border-left: 2px solid var(--red);
+  padding: 8px 0 8px 22px;
+}
+.stat .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 72px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.stat .label {
+  margin-top: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+/* Card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 36px;
+  position: relative;
+}
+.card.dense { padding: 28px; }
+.card-corner {
+  position: absolute;
+  top: -1px; left: -1px;
+  width: 10px; height: 10px;
+  border-top: 2px solid var(--red);
+  border-left: 2px solid var(--red);
+}
+
+/* Red / accent corner */
+.corner-tl { position: relative; }
+.corner-tl::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 16px; height: 16px;
+  border-top: 2px solid var(--red);
+  border-left: 2px solid var(--red);
+}
+
+/* Check / cross icons (pure CSS) */
+.icn-check, .icn-x {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 50%;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 18px;
+}
+.icn-check { background: rgba(43,212,142,0.1); color: var(--green); border: 1px solid rgba(43,212,142,0.35); }
+.icn-x     { background: rgba(239,43,43,0.1); color: var(--red); border: 1px solid rgba(239,43,43,0.35); }
+
+/* Data bar */
+.bar-track { height: 6px; background: var(--line); position: relative; }
+.bar-fill  { height: 100%; background: var(--red); transition: width 1.2s cubic-bezier(0.4,0,0.2,1); }
+.bar-fill.amber { background: var(--amber); }
+.bar-fill.green { background: var(--green); }
+.bar-fill.dim   { background: var(--line-2); }
+
+/* Slide 03 capability tags */
+@keyframes pulse-purple {
+  0%, 100% { box-shadow: 0 0 8px #a855f7; transform: scale(1); }
+  50% { box-shadow: 0 0 20px #a855f7, 0 0 36px rgba(168,85,247,0.4); transform: scale(1.35); }
+}
+@keyframes pulse-neonblue {
+  0%, 100% { box-shadow: 0 0 8px #00f0ff; transform: scale(1); }
+  50% { box-shadow: 0 0 20px #00f0ff, 0 0 36px rgba(0,240,255,0.4); transform: scale(1.35); }
+}
+@keyframes pulse-blue {
+  0%, 100% { box-shadow: 0 0 8px var(--blue); transform: scale(1); }
+  50% { box-shadow: 0 0 20px var(--blue), 0 0 36px rgba(58,141,255,0.4); transform: scale(1.35); }
+}
+.tag.autonomous  { border-color: var(--green); color: var(--green); background: rgba(43,212,142,0.07); }
+.tag.autonomous  .dot { background: var(--green); animation: pulse-green 1.6s ease-in-out infinite; }
+.tag.edge-ai     { border-color: #a855f7; color: #a855f7; background: rgba(168,85,247,0.07); }
+.tag.edge-ai     .dot { background: #a855f7; animation: pulse-purple 1.6s ease-in-out infinite 0.2s; }
+.tag.zero-day    { border-color: #00f0ff; color: #00f0ff; background: rgba(0,240,255,0.07); }
+.tag.zero-day    .dot { background: #00f0ff; animation: pulse-neonblue 1.6s ease-in-out infinite 0.4s; }
+.tag.red-team-247 { border-color: var(--red);  color: var(--red);  background: rgba(239,43,43,0.07); }
+.tag.red-team-247 .dot { background: var(--red);  animation: pulse-red   1.6s ease-in-out infinite 0.6s; }
+
+
+/* Particle channel animation */
+@keyframes particle-rise {
+  0%   { transform: translateY(120px) scale(0.4); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateY(-120px) scale(1); opacity: 0; }
+}
+
+.stack-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particle-rise linear forwards;
+}
+
+/* AI text color cycle animation */
+@keyframes ai-color-cycle {
+  0%   { color: #ef2b2b; }
+  20%  { color: #2bd48e; }
+  40%  { color: #ffe033; }
+  60%  { color: #a855f7; }
+  80%  { color: #00f0ff; }
+  100% { color: #ef2b2b; }
+}
+#ai-gradient-text {
+  animation: ai-color-cycle 4s ease-in-out infinite;
+}
+
+/* Live dashboard stream entry */
+@keyframes stream-in {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.stream-entry { animation: stream-in 0.3s ease forwards; }
+@keyframes finding-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.finding-entry { animation: finding-in 0.4s ease forwards; }
+
+/* Typewriter cursor blink */
+@keyframes tw-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+#typewriter-cursor { height: 0.85em; width: 5px; }
+
+/* Footer logos */
+.brandline {
+  position: absolute;
+  bottom: 56px;
+  left: 100px;
+  right: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  color: var(--muted);
+  text-transform: uppercase;
+  z-index: 2;
+}
+.brandline .powered {
+  display: flex; align-items: center; gap: 14px;
+}
+.brandline .powered img { height: 80px; }
+
+/* Redac7d watermark — bottom right, skip first and last slide */
+section:not(:first-of-type):not(:last-of-type) .slide::after {
+  content: '';
+  position: absolute;
+  bottom: 28px;
+  right: 40px;
+  width: 120px;
+  height: 36px;
+  background: url('assets/redac7d-logo.png') no-repeat center / contain;
+  opacity: 0.75;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ===== Glass shimmer effect ===== */
+.glass-shimmer { position: relative; }
+.glass-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -80%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 15%,
+    rgba(255,255,255,0.03) 35%,
+    rgba(255,255,255,0.09) 50%,
+    rgba(255,255,255,0.03) 65%,
+    transparent 85%
+  );
+  transform: skewX(-10deg);
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  clip-path: inset(0);
+}
+.glass-shimmer:hover::after {
+  opacity: 1;
+  animation: glass-sweep 2.2s linear 1 forwards;
+}
+@keyframes glass-sweep {
+  from { left: -80%; }
+  to   { left: 150%; }
+}
+
+/* ===== UC panel text colour hover ===== */
+.uc-panel .uc-title {
+  color: var(--white);
+  transition: color 0.35s ease;
+}
+.uc-panel:hover .uc-title {
+  color: var(--pc);
+}
+
+/* ===== Laser border effect ===== */
+.laser-panel { position: relative; }
+.laser-panel .laser-svg {
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  z-index: 4;
+  overflow: visible;
+}
