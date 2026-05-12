@@ -9,12 +9,12 @@
 
   :root {
     --bg: #080808;
-    --surface: #111;
     --line: rgba(255,255,255,0.08);
     --red: #ef2b2b;
     --blue: #3a8dff;
     --cyan: #00f0ff;
     --green: #2bd48e;
+    --amber: #ff8a1f;
     --white: #f0f0f0;
     --dim: rgba(255,255,255,0.55);
     --muted: rgba(255,255,255,0.3);
@@ -95,10 +95,28 @@
   .speech-block p:last-child { margin-bottom: 0; }
 
   em { color: var(--cyan); font-style: normal; font-weight: 600; }
-  strong { color: var(--white); }
   .red { color: var(--red); font-weight: 600; }
   .blue { color: var(--blue); font-weight: 600; }
   .green { color: var(--green); font-weight: 600; }
+  .amber { color: var(--amber); font-weight: 600; }
+
+  .stat-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 14px 0;
+  }
+  .stat-item {
+    padding: 10px 14px;
+    border-left: 3px solid rgba(239,43,43,0.6);
+    background: rgba(239,43,43,0.05);
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .stat-item.blue { border-left-color: rgba(58,141,255,0.6); background: rgba(58,141,255,0.05); }
+  .stat-item.cyan { border-left-color: rgba(0,240,255,0.6); background: rgba(0,240,255,0.05); }
+  .stat-item.green { border-left-color: rgba(43,212,142,0.6); background: rgba(43,212,142,0.05); }
+  .stat-item.amber { border-left-color: rgba(255,138,31,0.6); background: rgba(255,138,31,0.05); }
 
   .note {
     margin-top: 18px;
@@ -157,7 +175,7 @@
 
 <div id="deck">
 
-  <!-- SLIDE 1 -->
+  <!-- SLIDE 1: COVER -->
   <div class="slide active" data-id="XS-01" data-title="KEYNOTE">
     <div class="eyebrow">// opening + speed gap</div>
     <div class="slide-heading">Pembuka — The Speed Gap</div>
@@ -165,16 +183,16 @@
     <div class="speech-block">
       <p>Selamat pagi, Bapak-Ibu dan rekan-rekan sekalian.</p>
       <p>Perkenalkan, saya <em>Kholif Faiz Maruf</em>, CISO di Xecura.ai.</p>
-      <p>Hari ini saya ingin membahas satu kenyataan yang sangat penting, dan juga sangat mendesak — yaitu tentang <em>speed gap</em>.</p>
+      <p>Hari ini saya ingin membahas satu kenyataan yang sangat penting dan mendesak — yaitu tentang <em>speed gap</em>.</p>
       <p>Kesenjangan antara seberapa cepat attacker bergerak… dibandingkan dengan seberapa cepat sebagian besar organisasi masih berusaha bertahan.</p>
       <p>Karena kenyataannya sederhana: <span class="red">era pertahanan dengan kecepatan manusia sudah berakhir.</span></p>
-      <p>Hari ini kita masuk ke dunia di mana autonomous agents dapat melakukan scanning, reasoning, pivoting, exploitation, hingga persistence jauh lebih cepat daripada tim manual mana pun bisa merespons.</p>
+      <p>Hari ini kita masuk ke dunia di mana autonomous agents dapat melakukan scanning, reasoning, pivoting, exploitation, hingga persistence — jauh lebih cepat daripada tim manual mana pun bisa merespons.</p>
       <p>Ini bukan pembahasan tentang masa depan yang masih jauh. <em>Ini adalah pembahasan tentang apa yang sedang terjadi sekarang.</em></p>
     </div>
     <div class="note">Pause setelah "sudah berakhir." Biarkan kalimat itu mengendap.</div>
   </div>
 
-  <!-- SLIDE 2 -->
+  <!-- SLIDE 2: SPEAKER PROFILE -->
   <div class="slide" data-id="XS-02" data-title="SPEAKER">
     <div class="eyebrow">// speaker framing</div>
     <div class="slide-heading">Mengapa Saya Bicara Tentang Ini</div>
@@ -183,151 +201,196 @@
       <p>Ketika berbicara tentang cybersecurity, banyak organisasi masih berpikir dengan kata kerja lama: detect, discover, find, hunt.</p>
       <p>Tetapi di era agentic, <em>kata-kata itu saja sudah tidak cukup.</em></p>
       <p>Attacker hari ini tidak menunggu jam kerja. Tidak menunggu shift analyst. Tidak menunggu proses eskalasi manual. <span class="red">Mereka bergerak terus-menerus.</span></p>
-      <p>Saya berbicara tentang topik ini bukan hanya sebagai seorang cybersecurity leader, tetapi juga sebagai seseorang yang sudah lebih dari dua dekade berada di dunia offensive security, cryptography, threat analysis, dan executive security strategy.</p>
+      <p>Saya berbicara tentang topik ini sebagai seseorang yang sudah lebih dari 20 tahun berada di dunia offensive security, cryptography, threat analysis, dan executive security strategy — dari analis hingga posisi CISO.</p>
       <p>Ketika saya mengatakan bahwa operating model cybersecurity sedang berubah, yang saya maksud bukan perubahan kecil. <em>Yang saya maksud adalah perubahan yang struktural.</em></p>
       <p>Pertanyaannya bukan lagi apakah AI akan memengaruhi cybersecurity. Pertanyaannya adalah: <em>apakah model pertahanan kita masih dirancang untuk dunia yang benar-benar sedang kita hadapi hari ini?</em></p>
     </div>
   </div>
 
-  <!-- SLIDE 3 -->
+  <!-- SLIDE 3: MYTHOS BY ANTHROPIC -->
   <div class="slide" data-id="XS-03" data-title="ORIGIN">
-    <div class="eyebrow">// mythos · frontier ai</div>
-    <div class="slide-heading">Sinyal dari Frontier AI</div>
+    <div class="eyebrow">// mythos · project glasswing · 7 april 2026</div>
+    <div class="slide-heading">Claude Mythos & Project Glasswing</div>
     <span class="timing">⏱ 2:30</span>
     <div class="speech-block">
-      <p>Salah satu sinyal paling kuat dari perubahan ini adalah apa yang mulai ditunjukkan oleh frontier AI models.</p>
-      <p>Hari ini kita tidak lagi bicara hanya tentang AI yang bisa menghasilkan teks atau menjawab pertanyaan. Kita mulai melihat sistem yang mampu melakukan <em>reasoning teknis</em>, menghubungkan langkah-langkah kompleks, dan bahkan berkontribusi pada vulnerability discovery serta exploitation workflow pada level yang benar-benar mengubah threat model.</p>
-      <p>Dan ketika capability sudah mencapai titik itu, maka percakapannya berubah.</p>
-      <p>Kita tidak lagi bertanya apakah AI bisa menjadi operasional dalam dunia siber. Kita mulai bertanya: <span class="red">siapa yang lebih dulu mengoperasionalkannya? Defender, atau attacker?</span></p>
-      <p>Dan sejarah biasanya menunjukkan bahwa attacker bergerak lebih cepat dalam bereksperimen.</p>
+      <p>Izinkan saya memulai dengan satu fakta yang sangat spesifik.</p>
+      <p>Pada 7 April 2026, Anthropic merilis sebuah laporan dengan status <span class="red">ACCESS RESTRICTED</span>. Mereka membangun sebuah model bernama <span class="red">Claude Mythos</span> — model paling capable mereka saat ini, di atas Claude Opus — dan mereka memutuskan untuk <span class="red">tidak merilis model ini ke publik.</span> Karena terlalu berbahaya.</p>
+      <p>Apa yang Mythos lakukan? Secara otonom, tanpa instruksi manusia, model ini berhasil <em>mengidentifikasi lebih dari 1.000 zero-day vulnerabilities</em> di setiap major OS dan browser yang ada.</p>
+      <p>Salah satu temuannya: sebuah <span class="red">Remote Code Execution di FreeBSD yang sudah tersembunyi selama 17 tahun.</span> Ditemukan dan dieksploitasi secara otomatis.</p>
+      <p>Lalu Anthropic menjalankan <em>Project Glasswing</em> — sebuah program darurat dengan $100 juta kredit model, melibatkan 12 launch partners dan lebih dari 40 organisasi — untuk mencoba menambal temuan-temuan tersebut sebelum adversaries membangun hal yang sama.</p>
+      <p>Hasilnya? <span class="red">Lebih dari 99% temuan masih belum di-patch.</span> EU dan White House sudah dalam status siaga.</p>
+      <p>Modelnya dikunci. <em>Tapi perlombaan untuk membangun versi tanpa safety constraints sudah dimulai.</em></p>
     </div>
-    <div class="note">Pause panjang setelah kalimat terakhir. Biarkan audience menarik kesimpulan sendiri.</div>
+    <div class="note">Pause panjang setelah kalimat terakhir. Ini momen paling kuat di seluruh presentasi.</div>
   </div>
 
-  <!-- SLIDE 4 -->
+  <!-- SLIDE 4: THREAT REALITY -->
   <div class="slide" data-id="XS-04" data-title="THREAT BRIEFING">
-    <div class="eyebrow">// threat reality</div>
-    <div class="slide-heading">Realitas Ancaman yang Baru</div>
-    <span class="timing">⏱ 3:30</span>
+    <div class="eyebrow">// threat reality · data 2025–q1 2026</div>
+    <div class="slide-heading">Data Tidak Bisa Berbohong</div>
+    <span class="timing">⏱ 3:45</span>
     <div class="speech-block">
-      <p>Attack surface sudah tidak lagi statis. Dan attacker juga sudah tidak lagi linear.</p>
-      <p>AI-powered adversaries sekarang mampu mengotomatisasi reconnaissance, mempercepat social engineering, menganalisis code dan konfigurasi lebih cepat, dan menyesuaikan pendekatan mereka secara real-time.</p>
-      <p>Bagi para enterprise leaders, engineering leaders, dan tim teknologi, ini berarti satu hal: <em>security bukan lagi sekadar fungsi kontrol. Security sekarang menjadi bagian dari cara kita beroperasi secara aman di kecepatan AI.</em></p>
-      <p>Kalau bisnis kita dipercepat oleh AI, maka risiko kita juga ikut dipercepat oleh AI.</p>
-      <p>Karena itu, <span class="red">biaya dari keterlambatan bukan lagi sekadar biaya insiden. Tetapi biaya arsitektur, biaya kepercayaan, dan biaya kesiapan organisasi.</span></p>
+      <p>Attack surface sudah tidak lagi statis. Dan angka-angkanya berbicara sendiri.</p>
+      <div class="stat-row">
+        <div class="stat-item"><span class="red">4.151%</span> — lonjakan AI-powered phishing. Bukan 41 persen. Empat ribu seratus lima puluh satu persen. <span style="color:var(--muted); font-size:13px;">SlashNext 2025–Q1 2026</span></div>
+        <div class="stat-item"><span class="red">$4,88 juta</span> — rata-rata biaya satu data breach. <span style="color:var(--muted); font-size:13px;">IBM Cost of Data Breach 2025–Q1 2026</span></div>
+        <div class="stat-item"><span class="red">&lt;72 jam</span> — time-to-exploit setelah CVE ditemukan, dengan bantuan AI. <span style="color:var(--muted); font-size:13px;">Mandiant M-Trends 2026</span></div>
+        <div class="stat-item"><span class="red">204 hari</span> — rata-rata dwell time penyerang di dalam sistem Anda sebelum terdeteksi. <span style="color:var(--muted); font-size:13px;">IBM 2025–Q1 2026</span></div>
+      </div>
+      <p>AI-powered adversaries kini mengotomatisasi recon, mempercepat social engineering, menganalisis konfigurasi, dan menyesuaikan pendekatan secara real-time.</p>
+      <p><em>Security bukan lagi sekadar fungsi kontrol. Security sekarang menjadi bagian dari cara kita beroperasi di kecepatan AI.</em></p>
+      <p>Kalau bisnis kita dipercepat oleh AI, <span class="red">maka risiko kita juga ikut dipercepat oleh AI.</span></p>
     </div>
   </div>
 
-  <!-- SLIDE 5 -->
+  <!-- SLIDE 5: AGENTIC REVOLUTION -->
   <div class="slide" data-id="XS-05" data-title="CONTEXT">
-    <div class="eyebrow">// apa itu ai agent</div>
-    <div class="slide-heading">AI Assistant vs AI Agent</div>
-    <span class="timing">⏱ 4:30</span>
+    <div class="eyebrow">// what is an ai agent</div>
+    <div class="slide-heading">AI Agent — Bukan Sekadar Menjawab, Tapi Bertindak</div>
+    <span class="timing">⏱ 4:45</span>
     <div class="speech-block">
       <p>Lalu apa sebenarnya yang berubah di era agentic?</p>
       <p><em>AI assistant itu merespons. Tetapi AI agent bertindak.</em></p>
-      <p>Ia memahami konteks. Ia melakukan reasoning. Dan ia menggunakan tools untuk mengeksekusi. Itulah perbedaannya.</p>
-      <p>Dan begitu kita memahami perbedaan itu, maka implikasinya menjadi sangat jelas:</p>
-      <p>Kalau attacker bisa menggunakan agents untuk beroperasi tanpa henti, maka defender tidak bisa terus bergantung hanya pada workflow yang dibangun untuk ticket, dashboard, dan antrean manual.</p>
-      <p><span class="red">Satu-satunya model pertahanan yang mampu melawan agentic offense adalah agentic defense.</span></p>
+      <p>Cara agent berpikir ada tiga tahap:</p>
+      <div class="stat-row">
+        <div class="stat-item blue"><span class="blue">01 Perception</span> — membaca context dan environment secara mandiri, tanpa diminta.</div>
+        <div class="stat-item amber"><span class="amber">02 Reasoning</span> — merencanakan, beradaptasi, dan berpikir lateral antar langkah.</div>
+        <div class="stat-item"><span class="red">03 Action</span> — mengeksekusi menggunakan real tools secara otonom.</div>
+      </div>
+      <p>Agentic AI dapat merencanakan multi-step goals, menggunakan tools, browse networks, menulis dan mengeksekusi code — <span class="red">dan belajar dari setiap interaksi. Tanpa instruksi manusia.</span></p>
+      <p>Kalau attacker bisa menggunakan agents untuk beroperasi tanpa henti, maka defender tidak bisa terus bergantung pada workflow yang dibangun untuk ticket, dashboard, dan antrean manual.</p>
+      <p><em>Satu-satunya model pertahanan yang mampu melawan agentic offense adalah agentic defense.</em></p>
     </div>
     <div class="note">Tekankan kalimat terakhir — ini adalah inti dari seluruh presentasi.</div>
   </div>
 
-  <!-- SLIDE 6 -->
+  <!-- SLIDE 6: DOCTRINE -->
   <div class="slide" data-id="XS-06" data-title="DOCTRINE">
-    <div class="eyebrow">// new doctrine</div>
-    <div class="slide-heading">Doktrin Keamanan Baru</div>
-    <span class="timing">⏱ 5:15</span>
+    <div class="eyebrow">// new doctrine · 5 principles</div>
+    <div class="slide-heading">Lima Prinsip Doktrin Keamanan Baru</div>
+    <span class="timing">⏱ 5:30</span>
     <div class="speech-block">
-      <p>Jadi seperti apa doktrin keamanan baru di era ini? Ada lima prinsip utama.</p>
-      <p><em>Pertama, continuous over periodic.</em> Security tidak bisa lagi menjadi aktivitas triwulanan di tengah ancaman yang berubah setiap detik.</p>
-      <p><em>Kedua, autonomous over manual.</em> Manusia tetap penting untuk judgment dan keputusan strategis. Tetapi eksekusi tidak bisa lagi seluruhnya bergantung pada kecepatan manusia.</p>
-      <p><em>Ketiga, adaptive over rule-based.</em> Static rules akan tertinggal ketika attacker bergerak lebih cepat daripada update signature.</p>
-      <p><em>Keempat, intelligence-led over alert-driven.</em> Masa depan adalah judgment yang lebih baik, pada kecepatan mesin.</p>
-      <p><em>Kelima, platform over patchwork.</em> Tools yang terputus-putus akan menciptakan blind spot yang terputus-putus juga.</p>
+      <p><span class="red">Anda sedang melawan Formula 1 dengan sepeda.</span> Setiap hari tanpa agentic defense adalah satu hari di mana adversaries memiliki keunggulan struktural. Gap ini tidak menutup sendiri.</p>
+      <p>Doktrin baru terdiri dari lima prinsip:</p>
+      <div class="stat-row">
+        <div class="stat-item blue"><em>01 Continuous over Periodic</em> — Security bukan aktivitas triwulanan. Annual pentest adalah foto dari sungai yang tidak pernah berhenti mengalir.</div>
+        <div class="stat-item amber"><em>02 Autonomous over Manual</em> — AI agents menyerang di machine speed. Human-speed response sudah tidak memadai.</div>
+        <div class="stat-item"><em>03 Adaptive over Rule-Based</em> — Static rules mati begitu novel attack muncul. Agent defense melakukan reasoning, bukan menunggu signature update.</div>
+        <div class="stat-item cyan"><em>04 Intelligence-Led over Alert-Driven</em> — Jangan tenggelam dalam 10.000 alert per hari. Butuh signal, bukan noise.</div>
+        <div class="stat-item green"><em>05 Platform over Patchwork</em> — 37 tools terputus menciptakan 37 blind spot. Satu fabric yang terhubung memberikan perlindungan yang koheren.</div>
+      </div>
       <p><span class="red">Ini bukan lagi sekadar best practice. Ini adalah survival requirements.</span></p>
     </div>
   </div>
 
-  <!-- SLIDE 7 -->
+  <!-- SLIDE 7: INTRODUCING XECURA -->
   <div class="slide" data-id="XS-07" data-title="SOLUTION">
-    <div class="eyebrow">// introducing xecura</div>
-    <div class="slide-heading">Mengapa Kami Membangun Xecura</div>
-    <span class="timing">⏱ 6:15</span>
+    <div class="eyebrow">// introducing xecura.ai</div>
+    <div class="slide-heading">XECURA.AI — Built for the Era Where the Attacker Never Stops</div>
+    <span class="timing">⏱ 6:30</span>
     <div class="speech-block">
       <p>Dan inilah alasan mengapa kami membangun <em>Xecura.ai</em>.</p>
-      <p>Bukan sebagai dashboard tambahan. Bukan sebagai lapisan alert tambahan. Dan bukan sebagai security product yang justru menambah kompleksitas.</p>
-      <p>Kami membangun Xecura sebagai <em>agentic cybersecurity platform</em> — lima AI agents yang dirancang khusus, satu fabric yang saling terhubung.</p>
-      <p>Sebuah sistem yang dirancang untuk mendeteksi, merespons, menjaga kepatuhan, melakukan red teaming, dan memonitor exposure secara terus-menerus di seluruh digital estate.</p>
+      <p>Bukan sebagai dashboard tambahan. Bukan sebagai lapisan alert tambahan. Bukan sebagai security product yang menambah kompleksitas.</p>
+      <p>Kami membangun Xecura sebagai <em>Agentic Cybersecurity as a Service</em> — platform yang dirancang khusus untuk era ini.</p>
+      <p>Lima AI agents. Satu unified platform. <em>Perlindungan continuous di seluruh digital estate</em> — detection, response, compliance, red teaming, dan threat intelligence. Semua otonom. Semua terhubung.</p>
+      <div class="stat-row">
+        <div class="stat-item cyan">DETECT IN SECONDS</div>
+        <div class="stat-item blue">RESPOND AUTONOMOUSLY</div>
+        <div class="stat-item">ATTACK CONTINUOUSLY</div>
+        <div class="stat-item amber">COMPLY ALWAYS</div>
+      </div>
       <p>Karena di era ini, arsitektur yang menang bukan hanya lebih banyak manpower. <em>Yang menang adalah pertahanan berkecepatan mesin, yang tetap diarahkan oleh strategi manusia.</em></p>
     </div>
   </div>
 
-  <!-- SLIDE 8 -->
+  <!-- SLIDE 8: PLATFORM ARCHITECTURE -->
   <div class="slide" data-id="XS-08" data-title="ARCHITECTURE">
-    <div class="eyebrow">// xecura agentic fabric</div>
-    <div class="slide-heading">Lima Agent — Satu Fabric</div>
-    <span class="timing">⏱ 7:00</span>
+    <div class="eyebrow">// xecura agentic fabric · 5 agents</div>
+    <div class="slide-heading">Lima Agent — Satu Fabric — Coverage Lengkap</div>
+    <span class="timing">⏱ 7:15</span>
     <div class="speech-block">
-      <p>Di inti Xecura, ada satu gagasan yang sangat sederhana: <em>setiap lapisan keamanan harus didukung oleh agents yang tidak pernah berhenti bekerja.</em></p>
-      <p><em>Detection Agent</em> — mengidentifikasi pola, korelasi, dan ancaman baru.</p>
-      <p><em>Response Agent</em> — membantu containment dan remediation jauh lebih cepat.</p>
-      <p><span class="blue">Compliance Agent</span> — mengubah security operations menjadi evidence dan readiness untuk audit.</p>
-      <p><span class="red">Red Team Agent</span> — terus-menerus menguji apa yang akan diuji oleh attacker.</p>
-      <p><span class="green">Darkweb Agent</span> — memantau exposure eksternal sebelum menjadi krisis besar.</p>
-      <p>Ketika semua agent ini terhubung dalam satu fabric, security berhenti menjadi fragmented. <em>Security menjadi terkoordinasi.</em></p>
+      <p>Di inti Xecura, ada satu gagasan sederhana: <em>setiap lapisan keamanan harus didukung oleh agents yang tidak pernah berhenti.</em></p>
+      <div class="stat-row">
+        <div class="stat-item cyan"><em>XDA · Detection Agent</em> — Behavioral AI. Mendeteksi pola ancaman novel dan zero-day secara real-time. Powered by Google SecOps.</div>
+        <div class="stat-item cyan"><em>XRA · Response Agent</em> — Auto-containment dalam hitungan detik. Playbook execution, forensic collection, root cause analysis.</div>
+        <div class="stat-item blue"><em>XCA · Compliance Agent</em> — Real-time posture: ISO 27001, SOC 2, GDPR, NIST, PCI-DSS. Continuous audit, control mapping, evidence collection, regulator-ready reports.</div>
+        <div class="stat-item"><em>XTA · Red Team Agent</em> — Continuous pentesting. Zero-day discovery, exploit chain mapping, CVSS-scored findings. 365 hari per tahun.</div>
+        <div class="stat-item green"><em>XDW · Darkweb Agent</em> — 24/7 surveillance. Credential leak detection, breach monitoring, threat actor profiling, early warning alerts.</div>
+      </div>
+      <p>Semua agent terhubung dalam <em>XECURA AI FABRIC™</em> — agent orchestration, shared threat intel, unified telemetry, API integrations, zero-trust mesh.</p>
+      <p>Uptime platform: <em>99.98% — OPERATIONAL.</em></p>
     </div>
   </div>
 
-  <!-- SLIDE 9 -->
+  <!-- SLIDE 9: COMPLIANCE AGENT -->
   <div class="slide" data-id="XS-09" data-title="COMPLIANCE">
-    <div class="eyebrow">// compliance agent</div>
+    <div class="eyebrow">// compliance agent · xca·03</div>
     <div class="slide-heading">Compliance Bukan Aktivitas Tahunan</div>
-    <span class="timing">⏱ 7:45</span>
+    <span class="timing">⏱ 8:00</span>
     <div class="speech-block">
-      <p>Satu hal yang juga sangat penting adalah ini: <em>compliance tidak seharusnya berdiri terpisah dari security operations.</em></p>
-      <p>Di banyak organisasi, compliance masih dianggap sebagai pekerjaan menjelang audit. Sebagai aktivitas dokumentasi. Sebagai panic mode berkala.</p>
-      <p>Padahal di era agentic, compliance seharusnya menjadi output langsung dari operating security posture.</p>
-      <p>Kalau kontrol kita dimonitor terus-menerus, kalau evidence kita terbentuk otomatis, dan kalau reporting kita selalu siap untuk regulator, maka compliance tidak lagi reaktif.</p>
-      <p><em>Compliance menjadi operasional.</em></p>
-      <p>Dan untuk industri yang highly regulated, ini adalah perubahan yang sangat besar.</p>
+      <p>Satu hal yang sangat penting: <em>compliance tidak seharusnya berdiri terpisah dari security operations.</em></p>
+      <p>Di banyak organisasi, compliance masih dianggap sebagai pekerjaan menjelang audit — panic mode berkala. Padahal di era agentic, compliance seharusnya menjadi output langsung dari operating security posture.</p>
+      <p>Xecura Compliance Agent mengotomasi seluruh proses untuk <em>ISO 27001, ISO 27701, GDPR, NIST CSF, PCI-DSS, dan OJK/BI</em> — mulai dari:</p>
+      <div class="stat-row">
+        <div class="stat-item blue">Continuous audit monitoring</div>
+        <div class="stat-item blue">Control mapping otomatis</div>
+        <div class="stat-item blue">Evidence collection real-time</div>
+        <div class="stat-item blue">Regulator-ready reports kapan saja</div>
+      </div>
+      <p>Hasilnya: <em>hemat 300+ jam per tahun</em>, dan <span class="blue">hingga $200.000 penghematan biaya compliance</span> — dari panic audit menjadi audit-ready always.</p>
+      <p>Untuk industri yang highly regulated seperti perbankan dan fintech, <span class="red">ini bukan fitur tambahan. Ini adalah game changer.</span></p>
     </div>
   </div>
 
-  <!-- SLIDE 10 -->
+  <!-- SLIDE 10: RED TEAM & DARKWEB -->
   <div class="slide" data-id="XS-10" data-title="OFFENSIVE & INTEL">
-    <div class="eyebrow">// red team · darkweb</div>
-    <div class="slide-heading">Offensive Security & Early Warning</div>
-    <span class="timing">⏱ 8:15</span>
+    <div class="eyebrow">// red team · darkweb · xta·04 · xdw·05</div>
+    <div class="slide-heading">Serang Diri Sendiri Sebelum Musuh Melakukannya</div>
+    <span class="timing">⏱ 8:30</span>
     <div class="speech-block">
-      <p>Hal yang sama berlaku untuk offensive security dan threat intelligence.</p>
-      <p>Hari ini masih banyak organisasi yang melakukan red teaming seperti kegiatan kalender — setahun sekali. Satu snapshot pada satu titik waktu.</p>
-      <p><span class="red">Padahal attacker tidak bekerja secara tahunan.</span></p>
-      <p>Agentic red teaming yang berjalan terus-menerus memungkinkan organisasi menemukan attack paths, exposure chains, dan kelemahan lebih awal — <em>sebelum attacker sungguhan menemukannya.</em></p>
-      <p>Pada saat yang sama, darkweb monitoring memberi early warning yang sangat penting. Karena kadang tanda pertama dari sebuah masalah bukan muncul dari SIEM Anda — <em>kadang tanda pertama justru muncul dari credential leaks atau percakapan di tempat yang tidak semestinya.</em></p>
-      <p>Itulah sebabnya pertahanan modern harus mencakup dua hal sekaligus: ketahanan internal dan visibilitas eksternal.</p>
+      <p>Masih banyak organisasi yang melakukan red teaming seperti kegiatan kalender — setahun sekali. <span class="red">Padahal attacker tidak bekerja secara tahunan.</span></p>
+      <p><em>Red Team Agent (XTA)</em> melakukan continuous pentesting 365 hari per tahun:</p>
+      <div class="stat-row">
+        <div class="stat-item">Zero-day discovery otomatis di infrastruktur Anda sendiri</div>
+        <div class="stat-item">Exploit chain mapping end-to-end</div>
+        <div class="stat-item">CVSS-scored findings — prioritas berdasarkan severity nyata</div>
+        <div class="stat-item">Ganti $50K+ annual pentest dengan coverage 365 hari</div>
+      </div>
+      <p>Sementara <em>Darkweb Agent (XDW)</em> memberikan early warning 24/7:</p>
+      <div class="stat-row">
+        <div class="stat-item green">Credential leak detection — sebelum dipakai penyerang</div>
+        <div class="stat-item green">Data breach monitoring di dark web</div>
+        <div class="stat-item green">Threat actor profiling yang menarget organisasi Anda</div>
+        <div class="stat-item green"><em>72 jam rata-rata early warning</em> — tahu sebelum CEO Anda tahu</div>
+      </div>
+      <p>Ketahanan internal dan visibilitas eksternal. <em>Itulah pertahanan modern yang sesungguhnya.</em></p>
     </div>
   </div>
 
-  <!-- SLIDE 11 -->
+  <!-- SLIDE 11: VISION -->
   <div class="slide" data-id="XS-11" data-title="VISION">
-    <div class="eyebrow">// future of cybersecurity</div>
-    <div class="slide-heading">Ke Mana Semua Ini Bergerak</div>
-    <span class="timing">⏱ 8:45</span>
+    <div class="eyebrow">// road ahead · 2025–2030</div>
+    <div class="slide-heading">Masa Depan Keamanan Siber</div>
+    <span class="timing">⏱ 9:00</span>
     <div class="speech-block">
-      <p>Pandangan saya sederhana: <em>agentic security bukan kategori masa depan. Ini adalah kategori yang tidak terhindarkan.</em></p>
-      <p>Organisasi yang lebih cepat mengadopsinya akan memperoleh keunggulan struktural — bukan hanya dalam cyber defense, tetapi juga dalam kecepatan, efisiensi, resilience, dan trust.</p>
-      <p>Sebaliknya, organisasi yang terlambat akan mencoba melindungi bisnis berkecepatan AI dengan operating model yang dibangun untuk era sebelum AI.</p>
-      <p>Ke depan, saya percaya <em>peran manusia justru akan naik level.</em> Manusia akan semakin fokus pada policy, governance, strategic judgment, dan risk prioritization — sementara agents mengambil beban operasional yang repetitif dan continuous.</p>
+      <p><em>Agentic security bukan masa depan — ini adalah present yang belum Anda adopsi.</em></p>
+      <div class="stat-row">
+        <div class="stat-item"><span class="red">2025</span> — AI-Assisted Attacks Emerge. LLM dipakai untuk phishing, code generation, CVE analysis.</div>
+        <div class="stat-item amber"><span class="amber">2026</span> — Mythos Redefines the Threat Model. Agentic security menjadi critical requirement.</div>
+        <div class="stat-item blue"><span class="blue">XECURA LAUNCH ● NOW</span> — Agentic Security Platforms Emerge. Early adopters mendapat structural advantage.</div>
+        <div class="stat-item cyan"><span class="cyan" style="color:var(--cyan)">2027</span> — Agentic Security Becomes Table Stakes. Regulator mandate continuous monitoring.</div>
+        <div class="stat-item" style="border-left-color:rgba(255,255,255,0.2);">2030+ — Fully Autonomous Security Posture. Agents handle 100% detection, response, compliance.</div>
+      </div>
+      <p>Organisasi yang lebih cepat mengadopsi akan memperoleh keunggulan struktural — dalam cyber defense, kecepatan, efisiensi, dan trust.</p>
+      <p>Ke depan, <em>peran manusia justru akan naik level</em> — fokus pada policy, governance, dan strategic judgment — sementara agents mengambil seluruh beban operasional.</p>
       <p><em>Ini bukan tentang menghilangkan manusia. Ini tentang menaikkan nilai manusia.</em></p>
     </div>
   </div>
 
-  <!-- SLIDE 12 -->
+  <!-- SLIDE 12: CALL TO ACTION -->
   <div class="slide" data-id="XS-12" data-title="ACTION">
     <div class="eyebrow">// closing · call to action</div>
-    <div class="slide-heading">Penutup</div>
+    <div class="slide-heading">Penutup — Mulai Hari Ini</div>
     <span class="timing">⏱ 9:30</span>
     <div class="speech-block">
       <p>Jadi saya ingin menutup dengan satu hal.</p>
@@ -335,7 +398,7 @@
       <p>Dan di dunia seperti ini, pertanyaannya bukan lagi apakah attacker akan memakai AI. Mereka pasti akan memakainya.</p>
       <p>Pertanyaannya adalah: <span class="red">apakah defender masih akan terjebak di workflow manual ketika threat model sudah berubah total di sekelilingnya?</span></p>
       <p>Di Xecura, kami punya keyakinan yang sangat jelas: setiap organisasi, besar maupun kecil, berhak memiliki keamanan yang bisa berpikir, memantau, dan bertindak secepat ancamannya.</p>
-      <p>Karena <em>cybersecurity tidak boleh menjadi kemewahan yang hanya dimiliki segelintir pihak. Cybersecurity harus menjadi capability yang bisa diakses dan dijalankan secara nyata.</em></p>
+      <p><em>Cybersecurity tidak boleh menjadi kemewahan. Cybersecurity harus menjadi capability yang bisa diakses dan dijalankan secara nyata.</em></p>
       <p>Terima kasih.</p>
     </div>
     <div class="note">Senyum. Diam sebentar. Tunggu pertanyaan. Jangan langsung pergi dari podium.</div>
@@ -378,7 +441,6 @@
     document.getElementById('btn-next').disabled = current === total - 1;
   }
 
-  // Swipe
   let tx = 0;
   document.getElementById('deck').addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
   document.getElementById('deck').addEventListener('touchend', e => {
@@ -386,7 +448,6 @@
     if (Math.abs(d) > 50) navigate(d > 0 ? 1 : -1);
   }, { passive: true });
 
-  // Keyboard
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
     if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') navigate(-1);
