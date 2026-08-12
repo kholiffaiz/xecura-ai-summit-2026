@@ -566,7 +566,28 @@
       <div style="padding:76px 68px 56px; display:flex; flex-direction:column; justify-content:center; overflow:hidden;">
         <div class="eyebrow" style="margin-bottom:14px; color:var(--red);">// WHAT LIES BENEATH THE SURFACE</div>
         <h2 class="h-title" style="font-size:46px; margin-bottom:20px;">Entering the dark web is like <span style="color:var(--red);">walking into a black market.</span></h2>
-        <p class="body-lg" style="font-size:24px; margin-bottom:28px;">Behind the anonymity of Tor and encrypted marketplaces is not idle curiosity — it's an unregulated bazaar. <span style="color:var(--white);">Weapons, narcotics, malware, and even contract killers</span> are listed, rated, and shipped like ordinary e-commerce.</p>
+        <p class="body-lg" style="font-size:24px; margin-bottom:24px;">Behind the anonymity of Tor and encrypted marketplaces is not idle curiosity — it's an unregulated bazaar. <span style="color:var(--white);">Weapons, narcotics, malware, and even contract killers</span> are listed, rated, and shipped like ordinary e-commerce.</p>
+
+        <!-- Stat row -->
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-bottom:24px;">
+          <div class="stat" style="border-left-color:var(--red); padding:6px 0 6px 16px;">
+            <div class="num" style="font-size:36px;"><span id="xs03-a" data-count="15" style="color:var(--red);">0</span><span style="color:var(--red); font-size:0.55em;">B+</span></div>
+            <div class="label" style="font-size:12px; letter-spacing:0.1em; margin-top:6px; line-height:1.4;">Stolen credentials circulating dark web forums</div>
+          </div>
+          <div class="stat" style="border-left-color:var(--xcyan); padding:6px 0 6px 16px;">
+            <div class="num" style="font-size:36px;"><span style="color:var(--xcyan); font-size:0.55em;">$</span><span id="xs03-b" data-count="10.5" data-decimals="1" style="color:var(--xcyan);">0</span><span style="color:var(--xcyan); font-size:0.55em;">T</span></div>
+            <div class="label" style="font-size:12px; letter-spacing:0.1em; margin-top:6px; line-height:1.4;">Projected annual cost of global cybercrime by 2025</div>
+          </div>
+          <div class="stat" style="border-left-color:var(--amber); padding:6px 0 6px 16px;">
+            <div class="num" style="font-size:36px;"><span id="xs03-c" data-count="60" style="color:var(--amber);">0</span><span style="color:var(--amber); font-size:0.55em;">%</span></div>
+            <div class="label" style="font-size:12px; letter-spacing:0.1em; margin-top:6px; line-height:1.4;">Of dark web listings could directly harm an enterprise</div>
+          </div>
+          <div class="stat" style="border-left-color:var(--xpurple); padding:6px 0 6px 16px;">
+            <div class="num" style="font-size:36px;"><span style="color:var(--xpurple); font-size:0.55em;">$</span><span id="xs03-d" data-count="20" style="color:var(--xpurple);">0</span></div>
+            <div class="label" style="font-size:12px; letter-spacing:0.1em; margin-top:6px; line-height:1.4;">Avg. price of a single stolen credit card record</div>
+          </div>
+        </div>
+        <div class="mono" style="font-size:11px; color:var(--muted); letter-spacing:0.08em; margin-bottom:20px; margin-top:-10px;">Digital Shadows · Cybersecurity Ventures · Terbium Labs · Privacy Affairs Dark Web Price Index</div>
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
           <div style="display:flex; gap:12px; align-items:flex-start; padding:12px 16px; border:1px solid rgba(239,43,43,0.25); background:rgba(239,43,43,0.04);">
@@ -1594,7 +1615,37 @@
 </deck-stage>
 
 <script>
-/* ── Stat counters: slide 03 ── */
+/* ── Stat counters: slide 03 (Dark Web Iceberg) ── */
+(function () {
+  const SLIDE_INDEX = 2;
+  const DURATION = 1600;
+  const EASING = t => t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
+
+  function animateCounter(el) {
+    const target = parseFloat(el.dataset.count);
+    const decimals = parseInt(el.dataset.decimals ?? '0', 10);
+    let start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / DURATION, 1);
+      const val = EASING(progress) * target;
+      el.textContent = decimals > 0 ? val.toFixed(decimals) : Math.round(val).toLocaleString('en-US');
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = decimals > 0 ? target.toFixed(decimals) : target.toLocaleString('en-US');
+    }
+    requestAnimationFrame(step);
+  }
+
+  document.querySelector('deck-stage').addEventListener('slidechange', function (e) {
+    if (e.detail.index === SLIDE_INDEX) {
+      setTimeout(() => {
+        e.detail.slide.querySelectorAll('[data-count]').forEach(el => animateCounter(el));
+      }, 200);
+    }
+  });
+})();
+
+/* ── Stat counters: slide 04 (Mythos) ── */
 (function () {
   const SLIDE_INDEX = 3;
   const DURATION = 1600;
